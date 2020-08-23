@@ -1,5 +1,3 @@
-# Find images in folder
-
 import os
 import imagehash
 from PIL import Image
@@ -41,6 +39,11 @@ def get_average_hash(image_path):
 
 
 def check_images():
+    """
+    Loops over all images in `images_in_directory` and performs comparison
+    Removes the image from directory and List if it find a duplicate
+    """
+
     print(f'Looking for duplicate images...')
 
     for image in images_in_directory:
@@ -53,6 +56,14 @@ def check_images():
 
 
 def check_image_for_duplicates(original_image):
+    """
+    Compares image hash with hashes for all other images in the directory
+
+    Parameters
+    ----------
+        image_ppath : str, required
+    """
+
     original_image_hash = get_average_hash(original_image)
 
     print(f'Checking for duplicate images for {original_image}')
@@ -81,6 +92,14 @@ def compare_image_hashes(image_hash, potential_duplicate_hash):
 
 
 def remove_image(image_path):
+    """
+    Removes passed image from `images_in_directory` and directory
+
+    Parameters
+    ----------
+        image_ppath : str, required
+    """
+
     os.remove(image_path)
     images_in_directory.remove(image_path)
 
